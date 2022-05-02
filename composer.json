@@ -1,0 +1,27 @@
+{
+  "name": "marselinus/php-unit",
+  "description": "belajar php unit test",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Marselinus\\Test\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Marselinus\\Test\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "marselinusharson",
+      "email": "marselinus@undiksha.ac.id"
+    }
+  ],
+  "require": {
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=9.5.5"
+  }
+}
