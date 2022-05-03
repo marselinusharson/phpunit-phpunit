@@ -34,6 +34,8 @@ namespace Marselinus\Test
 
         public function testStubMap()
         {
+            // vendor\bin\phpunit.bat --filter ProductServiceTest::testStubMap tests\ProductServiceTest.php
+
             $product1 = new Product();
             $product1->setId("1");
 
@@ -50,6 +52,22 @@ namespace Marselinus\Test
             
             self::assertSame($product1, $this->repository->findById("1"));
             self::assertSame($product2, $this->repository->findById("2"));
+        }
+
+        public function testStubCallBack()
+        {
+            $this->repository->method("findById")
+                ->willReturnCallBack(function (string $id){
+                    $product = new Product();
+                    $product->setId($id);
+
+                    return $product;
+                });
+            
+                self::assertEquals("1", $this->repository->findById("1")->getId());
+                self::assertEquals("2", $this->repository->findById("2")->getId());
+                self::assertEquals("3", $this->repository->findById("3")->getId());
+                self::assertEquals("4", $this->repository->findById("4")->getId());
         }
     }
 }
