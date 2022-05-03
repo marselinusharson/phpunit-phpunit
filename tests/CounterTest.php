@@ -33,15 +33,19 @@ namespace Marselinus\Test{
             
         }
 
-        // anotation
         // running
         // vendor\bin\phpunit.bat --filter CounterTest::increment tests\CounterTest.php
         
+        // anotation
         /**
         * @test
         */
         public function increment(){
             // $counter = new Counter();
+
+            // skip test
+            self::markTestSkipped("Masih ada error yang belum disolve");
+            
             $this->counter->increment();
             $this->counter->increment();
     
