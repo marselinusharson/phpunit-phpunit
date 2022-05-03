@@ -85,6 +85,14 @@ namespace Marselinus\Test{
         }
         
 
+        /**
+         * @requires OSFAMILY Darwin
+         */
+        public function testOnlyDarwin()
+        {
+            self::assertTrue(true,"Only Mac");
+        }
     }
+
 
 }
