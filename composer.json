@@ -12,6 +12,9 @@
       "Marselinus\\Test\\": "tests/"
     }
   },
+  "scripts": {
+    "test": "phpunit --configuration phpunit.xml"
+  },
   "authors": [
     {
       "name": "marselinusharson",
