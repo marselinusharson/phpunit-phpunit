@@ -64,10 +64,36 @@ namespace Marselinus\Test
                     return $product;
                 });
             
-                self::assertEquals("1", $this->repository->findById("1")->getId());
-                self::assertEquals("2", $this->repository->findById("2")->getId());
-                self::assertEquals("3", $this->repository->findById("3")->getId());
-                self::assertEquals("4", $this->repository->findById("4")->getId());
+            self::assertEquals("1", $this->repository->findById("1")->getId());
+            self::assertEquals("2", $this->repository->findById("2")->getId());
+            self::assertEquals("3", $this->repository->findById("3")->getId());
+            self::assertEquals("4", $this->repository->findById("4")->getId());
         }
+
+
+        public function testDelete()
+        {
+            // vendor\bin\phpunit.bat --filter ProductServiceTest::testDelete tests\ProductServiceTest.php
+
+            $product = new Product();
+            $product->setId("1");
+
+            
+            $this->repository->method("findById")
+                ->willReturn($product);
+            $this->service->delete("1");
+            self::assertTrue(true,"succes delete");
+        }
+
+        public function testDeleteException()
+        {
+            self::expectException(\Exception::class);
+            $this->repository->method("findById")
+                ->willReturn(null);
+            
+                $this->service->delete("1");
+
+        }
+
     }
 }
