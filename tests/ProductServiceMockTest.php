@@ -33,5 +33,37 @@ namespace Marselinus\Test
             // $result = $this->repository->findById("1");
         }
 
+        public function testDeletesucces()
+        {
+            $product = new Product();
+            $product->setId("1");
+
+            $this->repository->expects($this->once())
+                ->method("delete")
+                ->with(self::equalTo($product));
+
+
+            $this->repository->method("findById")
+                ->willReturn($product)
+                ->with(self::equalTo("1"));
+
+            $this->service->delete("1");
+            self::assertTrue(true, "success delete");
+        }
+        
+
+        public function testDeleteException()
+        {
+            $this->repository->expects(self::never())
+                ->method("delete");
+
+            $this->expectException(\Exception::class);
+            $this->repository->method("findById")
+                ->willReturn(null)
+                ->with(self::equalTo("1"));
+            
+            $this->service->delete("1");
+        }
+
     }
 }

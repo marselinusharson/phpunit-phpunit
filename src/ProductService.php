@@ -17,16 +17,16 @@ namespace Marselinus\Test
                 throw new \Exception("Product is already exist");
             }
 
-            // return $this->repository->save($product);
+            return $this->repository->save($product);
         }
 
-        public function delete(?string $id) :void
+        public function delete(string $id) :void
         {
-            $product =$this->repository->findById($id);
+            $product = $this->repository->findById($id);
             if($product == null){
                 throw new \Exception("product is not found");
             }
-            $this->repository->delete($product);
+            // $this->repository->delete($product);
             $this->repository->delete($product);
         }
     }
