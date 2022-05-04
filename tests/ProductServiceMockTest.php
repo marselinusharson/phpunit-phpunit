@@ -43,7 +43,8 @@ namespace Marselinus\Test
                 ->with(self::equalTo($product));
 
 
-            $this->repository->method("findById")
+            $this->repository->expects(self::once())
+                ->method("findById")
                 ->willReturn($product)
                 ->with(self::equalTo("1"));
 
@@ -58,12 +59,17 @@ namespace Marselinus\Test
                 ->method("delete");
 
             $this->expectException(\Exception::class);
-            $this->repository->method("findById")
+            $this->repository->expects(self::once())
+                ->method("findById")
                 ->willReturn(null)
                 ->with(self::equalTo("1"));
             
             $this->service->delete("1");
         }
+
+        // function untuk mocking trait dan abstract class 
+        // getMockForTrait()
+        // getMockForAbstract()
 
     }
 }
